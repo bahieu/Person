@@ -1,15 +1,50 @@
-function Person(name, age, gender, cccd) {
-    this.name = name;
+function Person(pName, age, gender, cccd) {
+    this.pName = pName;
     this.age = age;
     this.gender = gender;
     this.cccd = cccd;
 }
+// Setter, Getter
+Person.prototype.setPName = function(pName){
+    this.pName = pName;
+}
+Person.prototype.getPName = function(){
+    return this.pName;
+}
+Person.prototype.setAge = function(age){
+    this.age = age;
+}
+Person.prototype.getAge = function(){
+    return this.age;
+}
+Person.prototype.setGender = function(gender){
+    this.pName = gender;
+}
+Person.prototype.getGender = function(){
+    return this.gender;
+}
+Person.prototype.setCCCD = function(cccd){
+    this.cccd = cccd;
+}
+Person.prototype.getCCCD = function(){
+    return this.cccd;
+}
+
+//Nhập giá trị
+Person.prototype.inputInfo = function(){
+    this.setPName(prompt('Nhập tên: '));
+    this.setAge(prompt('Nhập tuổi: '));
+    this.setGender(prompt('Nhập giới tính: '));
+    this.setCCCD(prompt('Nhập CCCD: '));
+}
+
+//In thông tin
 Person.prototype.getInfo = function () {
-    console.log(
-        "Name: " +this.name + "<br/>" +
-        "Age:" +   this.age + "<br/>" +
-        "gender: " + this.gender
-    );
+    console.log(` Thông tin: 
+    - Name: ${this.getPName()}
+    - Age: ${this.getAge()}
+    - Gender: ${this.getGender()}
+    - CCCD: ${this,this.getCCCD()}`)
 };
 Person.prototype.drinkWater = function () {
     console.log("Đang uống nước");
@@ -18,29 +53,14 @@ Person.prototype.drinkWater = function () {
 function Staff(salary) {
     this.salary = salary;
 }
-
-function Student(mssv) {    
-    this.mssv = mssv;
+Staff.prototype = new Person();
+Staff.prototype.setSalary = function(salary){
+    this.salary = salary;
+}
+Staff.prototype.getSalary = function(){
+    return salary;
 }
 
-function MemberOfFamily(nickName) {   
-    this.nickName = nickName;
-}
-
-var name1 = prompt("Enter Your Name: ");
-var age = Number(prompt("Enter Your Age: "));
-var gender = prompt("Enter Your Gender: ");
-var cccd = prompt("Enter Your CCCD: ");
-var salary = Number(prompt("Enter Your Salary: "));
-var mssv = prompt("Enter Your MSSV: ");
-var nickName = prompt("Enter Your Nick Name: ");
-
-Staff.prototype = new Person(name1, age, gender, cccd);
-MemberOfFamily.prototype = new Person(name1, age, gender, cccd);
-Student.prototype = new Person(name1, age, gender, cccd);
-var staff1 = new Staff(salary);
-var member1 = new MemberOfFamily(nickName);
-var student1 = new Student(mssv);
 Staff.prototype.bungCF = function () {
     console.log("Đang bưng cà phê");
 };
@@ -51,6 +71,18 @@ Staff.prototype.donBan = function () {
     console.log("Đang dọn bàn");
 };
 
+function Student(mssv) {    
+    this.mssv = mssv;
+}
+
+Student.prototype = new Person();
+Student.prototype.setMSSV = function(mssv){
+    this.mssv = mssv;
+}
+Student.prototype.getMSSV =function(){
+    return this.mssv;
+}
+
 Student.prototype.lamBaiKiemTra = function () {
     console.log("Đang làm bài kiểm tra");
 };
@@ -58,16 +90,25 @@ Student.prototype.hocBai = function () {
     console.log("Đang học bài");
 };
 
+function MemberOfFamily(nickName) {   
+    this.nickName = nickName;
+}
+
+MemberOfFamily.prototype = new Person();
+MemberOfFamily.prototype.setNickName = function(nickName){
+    this.nickName = nickName;
+}
+MemberOfFamily.prototype.getNickName = function(){
+    return this.nickName;
+}
+
 MemberOfFamily.prototype.xemTV = function () {
     console.log("Đang xem tivi");
 };
 MemberOfFamily.prototype.nauAn = function () {
     console.log("Đang nấu ăn");
 };
-staff1.getInfo();
-staff1.bungCF();
-staff1.drinkWater();
-member1.getInfo();
-member1.nauAn();
-student1.getInfo();
-student1.lamBaiKiemTra();
+
+var ps1 = new NhanVien();
+
+
